@@ -35,6 +35,15 @@ class PerformanceReportCountry(IncrementalTableStream):
 
     body_params = {"aggregationType": "byProperty", "dimensions": ["date", "country"]}
 
+class PerformanceReportSearchAppearance(IncrementalTableStream):
+    """Class Representing the `performance_report_search_appearance` Stream."""
+
+    tap_stream_id = "performance_report_search_appearance"
+    key_properties = ["site_url", "search_type", "date", "searchAppearance"]
+    valid_replication_keys = ("date",)
+
+    body_params = {"aggregationType": "byProperty", "dimensions": ["date", "searchAppearance"]}
+
 
 class PerformanceReportDevices(IncrementalTableStream):
     """Class Representing the `performance_report_device` Stream."""
