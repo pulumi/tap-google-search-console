@@ -26,6 +26,7 @@ class GoogleSearchConsoleBaseTest(unittest.TestCase):
     properties = {
         "client_id": "TAP_GOOGLE_SEARCH_CONSOLE_CLIENT_ID",
         "site_urls": "TAP_GOOGLE_SEARCH_CONSOLE_SITE_URLS",
+        "search_appearences": "TAP_GOOGLE_SEARCH_SEARCH_APPEARENCES",
     }
     credentials = {
         "client_secret": "TAP_GOOGLE_SEARCH_CONSOLE_CLIENT_SECRET",

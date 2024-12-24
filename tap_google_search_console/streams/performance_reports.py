@@ -1,4 +1,7 @@
 from singer.logger import get_logger
+from typing import Optional
+from copy import deepcopy
+
 
 from .abstract import IncrementalTableStream
 
@@ -35,14 +38,47 @@ class PerformanceReportCountry(IncrementalTableStream):
 
     body_params = {"aggregationType": "byProperty", "dimensions": ["date", "country"]}
 
+
 class PerformanceReportSearchAppearance(IncrementalTableStream):
     """Class Representing the `performance_report_search_appearance` Stream."""
 
     tap_stream_id = "performance_report_search_appearance"
-    key_properties = ["site_url", "search_type", "date", "searchAppearance"]
+    key_properties = ["site_url", "search_type", "date", "page"]
     valid_replication_keys = ("date",)
 
-    body_params = {"aggregationType": "byProperty", "dimensions": ["date", "searchAppearance"]}
+
+    body_params = {"aggregationType": "byProperty","type" : "web", "dimensions": ["date", "page"],
+  "dimensionFilterGroups": [
+    {
+      "filters": [
+        {
+          "dimension": "searchAppearance",
+          "operator": "equals",
+          "expression": "{search_appearance}"
+        }
+      ]
+    }
+  ]}
+    def get_search_appearances(self):
+        return self.config.get("search_appearences", "").replace(" ", "").split(",")
+    
+    
+    def get_records(self, state: dict, schema: dict, stream_metadata: dict) -> None:
+        """Starts extracting data for each site_url and each search_appearance."""
+        search_appearances = self.get_search_appearances()
+
+        for site in self.get_site_url():
+            for search_appearance in search_appearances:
+                LOGGER.info(f"Starting Sync for Stream {self.tap_stream_id}, Site {site}, SearchAppearance {search_appearance}")
+
+                # Create a fresh copy of body_params for each iteration
+                current_body_params = deepcopy(self.body_params)
+                current_body_params["dimensionFilterGroups"][0]["filters"][0]["expression"] = search_appearance
+                self.body_params = current_body_params
+                self.get_records_for_site(site, state, schema, stream_metadata,search_appearance)
+
+                LOGGER.info(f"Finished Sync for Stream {self.tap_stream_id}, Site {site}, SearchAppearance {search_appearance}")  
+  
 
 
 class PerformanceReportDevices(IncrementalTableStream):

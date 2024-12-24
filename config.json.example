@@ -3,6 +3,7 @@
     "client_secret": "YOUR_CLIENT_SECRET",
     "refresh_token": "YOUR_REFRESH_TOKEN",
     "site_urls": "https://example.com, https://www.example.com, http://example.com, http://www.example.com, sc-domain:example.com",
+    "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
     "start_date": "2019-01-01T00:00:00Z",
     "user_agent": "tap-google-search-console <api_user_email@example.com>",
     "request_timeout": 300

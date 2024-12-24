@@ -31,12 +31,14 @@ class GoogleClient:  # pylint: disable=too-many-instance-attributes
         client_secret: str,
         refresh_token: str,
         site_urls: str,
+        search_appearences: str,
         user_agent=None,
         timeout=REQUEST_TIMEOUT,
     ):
 
         self.__client_id, self.__client_secret, self.__refresh_token = (client_id, client_secret, refresh_token)
-        self.__site_urls, self.__user_agent = site_urls, user_agent
+        self.__site_urls, self.__user_agent, = site_urls, user_agent
+        self.__search_appearences = search_appearences
         self.__access_token, self.__expires, self.base_url = None, None, None
         self.__session = requests.Session()
 

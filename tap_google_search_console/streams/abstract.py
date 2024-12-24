@@ -1,7 +1,8 @@
 import json
 from abc import ABC, abstractmethod
 from datetime import datetime, timedelta
-from typing import Dict, List, Tuple, Union
+from typing import Dict, List, Tuple, Union, Optional
+
 
 from singer import (
     Transformer,
@@ -248,7 +249,8 @@ class IncrementalTableStream(BaseStream, ABC):
             return max_bookmark_value
 
     def get_records_for_sub_type(
-        self, site_url: str, sub_type: str, state: Dict, schema: Dict, stream_metadata: Dict
+        self, site_url: str, sub_type: str, state: Dict, schema: Dict, stream_metadata: Dict,
+        search_appearance: Optional[str] = None
     ) -> None:
         """Sync the data for a given sub_type, stream, site Gets the bookmark
         value or start date value, extracts data for date window size of 30
@@ -294,6 +296,10 @@ class IncrementalTableStream(BaseStream, ABC):
                     self.write_bookmark(state, site_url, sub_type, bookmark_value)
                     start_dt_tm, end_dt_tm = self.modify_start_end_dt_tm(end_dt_tm)
 
+                if search_appearance is not None:
+                    for record in transformed_data:
+                        record["search_appearance"] = search_appearance
+
                 self.validate_keys_in_data(transformed_data)
                 LOGGER.info(f"Total synced records for {sub_type} {self.tap_stream_id}: {len(transformed_data)}")
                 batch_count = len(transformed_data)
@@ -310,13 +316,13 @@ class IncrementalTableStream(BaseStream, ABC):
 
             start_dt_tm, end_dt_tm = self.modify_start_end_dt_tm(end_dt_tm)
 
-    def get_records_for_site(self, site_url: str, state: Dict, schema: Dict, stream_metadata: Dict) -> None:
+    def get_records_for_site(self, site_url: str, state: Dict, schema: Dict, stream_metadata: Dict, search_appearance: Optional[str] = None) -> None:
         """Starts Syncing data for each sub_type for a given site Logs the
         total number of extracted records."""
         for sub_type in self.sub_types:
             LOGGER.info(f"Starting Sync for Stream {self.tap_stream_id}, Site {site_url}, Type {sub_type}")
             self.records_extracted = 0
-            self.get_records_for_sub_type(site_url, sub_type, state, schema, stream_metadata)
+            self.get_records_for_sub_type(site_url, sub_type, state, schema, stream_metadata, search_appearance)
             LOGGER.info(
                 f"Total records extracted for Stream: {self.tap_stream_id}, Site: {site_url}, Type: {sub_type}:"
                 f" {self.records_extracted}"
