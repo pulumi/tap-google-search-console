@@ -16,6 +16,7 @@ class TestTimeoutValue(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
         }
@@ -26,6 +27,7 @@ class TestTimeoutValue(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -39,6 +41,7 @@ class TestTimeoutValue(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
             "request_timeout": 100,
@@ -50,6 +53,7 @@ class TestTimeoutValue(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -63,6 +67,7 @@ class TestTimeoutValue(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
             "request_timeout": "100",
@@ -74,6 +79,7 @@ class TestTimeoutValue(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -87,6 +93,7 @@ class TestTimeoutValue(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
             "request_timeout": "",
@@ -98,6 +105,7 @@ class TestTimeoutValue(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -111,6 +119,7 @@ class TestTimeoutValue(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
             "request_timeout": 0.0,
@@ -122,6 +131,7 @@ class TestTimeoutValue(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -135,6 +145,7 @@ class TestTimeoutValue(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
             "request_timeout": "0.0",
@@ -146,6 +157,7 @@ class TestTimeoutValue(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -168,6 +180,7 @@ class TestTimeoutBackoff(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
         }
@@ -179,6 +192,7 @@ class TestTimeoutBackoff(unittest.TestCase):
                 config["client_secret"],
                 config["refresh_token"],
                 config["site_urls"],
+                config["search_appearences"],
                 user_agent=config["user_agent"],
                 timeout=config.get("request_timeout"),
             )
@@ -196,6 +210,7 @@ class TestTimeoutBackoff(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
         }
@@ -206,6 +221,7 @@ class TestTimeoutBackoff(unittest.TestCase):
             config["client_secret"],
             config["refresh_token"],
             config["site_urls"],
+            config["search_appearences"],
             user_agent=config["user_agent"],
             timeout=config.get("request_timeout"),
         )
@@ -231,6 +247,7 @@ class TestConnectionErrorBackoff(unittest.TestCase):
             "client_secret": "test_client_secret",
             "refresh_token": "test_refresh_token",
             "site_urls": "www.test.com",
+            "search_appearences": "TRANSLATED_RESULT,TPF_QA,EDU_Q_AND_A",
             "start_date": "2021-01-01T00:00:00Z",
             "user_agent": "test_user_agent",
         }
@@ -242,6 +259,7 @@ class TestConnectionErrorBackoff(unittest.TestCase):
                 config["client_secret"],
                 config["refresh_token"],
                 config["site_urls"],
+                config["search_appearences"],
                 user_agent=config["user_agent"],
                 timeout=config.get("request_timeout"),
             )

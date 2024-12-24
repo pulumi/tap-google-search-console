@@ -1,6 +1,7 @@
 from .performance_reports import (
     PerformanceReportCountry,
     PerformanceReportCustom,
+    PerformanceReportSearchAppearance,
     PerformanceReportDate,
     PerformanceReportDevices,
     PerformanceReportPage,
@@ -12,6 +13,7 @@ from .sites import Sites
 STREAMS = {
     Sites.tap_stream_id: Sites,
     Sitemaps.tap_stream_id: Sitemaps,
+    PerformanceReportSearchAppearance.tap_stream_id: PerformanceReportSearchAppearance,
     PerformanceReportCustom.tap_stream_id: PerformanceReportCustom,
     PerformanceReportDate.tap_stream_id: PerformanceReportDate,
     PerformanceReportCountry.tap_stream_id: PerformanceReportCountry,
